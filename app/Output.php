@@ -8,6 +8,6 @@ class Output extends Model
 {
     function reports()
     {
-        return $this->belongsToMany(Report::class);
+        return $this->belongsTo(Report::class);
     }
 }

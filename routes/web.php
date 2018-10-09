@@ -30,5 +30,3 @@ Route::middleware(['auth'])->group(function () {
 });
 
 Route::get('/output', 'OutputController@index')->name('outputs');
-
-
