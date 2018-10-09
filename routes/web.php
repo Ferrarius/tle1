@@ -20,13 +20,14 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('/user/input', 'UserInputController@edit')->name('user.input.edit');
-
-    Route::post('/user/input', 'UserInputController@update')->name('user.input.update');
-
-    Route::get('/reports', 'UserReportController@index')->name('reports');
-    Route::post('/reports', 'UserReportController@store')->name('report.store');
-    Route::get('/reports/{report}', 'UserReportController@show')->name('report.show');
+    Route::get('/reports/');
 });
+
+Route::get('/input', 'UserInputController@edit')->name('user.input.edit');
+Route::post('/input', 'UserInputController@update')->name('user.input.update');
+
+//Route::get('/reports', 'UserReportController@index')->name('reports');
+//Route::post('/reports', 'UserReportController@store')->name('report.store');
+//Route::get('/reports/{report}', 'UserReportController@show')->name('report.show');
 
 Route::get('/output', 'OutputController@index')->name('outputs');
