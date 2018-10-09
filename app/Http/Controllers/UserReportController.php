@@ -12,7 +12,7 @@ class UserReportController extends Controller
     {
         $reports = Auth::user()->reports;
 
-        return view('report.index');
+        return view('report.index', compact('reports'));
     }
 
     function show(Request $request, Report $report)

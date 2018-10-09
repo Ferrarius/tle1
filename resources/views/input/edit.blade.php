@@ -18,5 +18,11 @@
         {{Form::submit('Submit')}}
 
         {{Form::close()}}
+
+        <div>
+            {{Form::open(['route' => 'user.report.create'])}}
+        </div>
     </div>
+
+
 @endsection
