@@ -19,4 +19,18 @@ class UserReportController extends Controller
     {
         return view('report.show', compact('report'));
     }
+
+    function store(Request $request)
+    {
+        // Create some report and put in DB
+
+        return redirect()->route('user.report.show', ['report' => new Report]); // send the report to this route
+    }
+
+    function delete(Report $report)
+    {
+        $report->delete();
+
+        return redirect()->route('user.reports');
+    }
 }

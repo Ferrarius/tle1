@@ -1,7 +1,11 @@
-<div class="container">
-    <ul>
-        @foreach($raports as $report)
-            <li>{{$raport->name}}</li>
-        @endforeach
-    </ul>
-</div>
+@extends('layouts.app')
+
+@section('content')
+    <div class="container">
+        <ul>
+            @foreach($reports as $report)
+                <li>{{$report->name}}</li>
+            @endforeach
+        </ul>
+    </div>
+@endsection
