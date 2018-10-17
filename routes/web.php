@@ -22,7 +22,7 @@ Route::get('/', 'HomeController@index')->name('home');
 Route::middleware(['auth'])->group(function () {
     Route::get('/reports', 'UserReportController@index')->name('user.reports');
     Route::get('/reports/{report}', 'UserReportController@show')->name('user.report.show');
-    Route::post('/reports', 'UserReportsController@store')->name('user.report.store');
+    Route::post('/reports', 'UserReportController@store')->name('user.report.store');
     Route::delete('/reports/{report}', 'UserReportController@delete')->name('user.report.delete');
 
     Route::post('/input', 'UserInputController@update')->name('user.input.update');
