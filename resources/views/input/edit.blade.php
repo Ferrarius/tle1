@@ -13,8 +13,8 @@
             {{Form::text('zip')}}
         </div>
         <div class="form-group">
-            {{Form::label('address', 'Address:')}}
-            {{Form::number('address')}}
+            {{Form::label('house_nr', 'Huisnummer:')}}
+            {{Form::number('house_nr')}}
         </div>
         <div class="form-group">
             {{Form::label('floor_isolation', 'Floor isolation')}}

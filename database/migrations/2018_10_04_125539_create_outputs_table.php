@@ -16,17 +16,17 @@ class CreateOutputsTable extends Migration
         Schema::create('outputs', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->integer('saving_euro');
-            $table->integer('amount');
-            $table->integer('gas');
-            $table->integer('surface');
-            $table->integer('usage');
-            $table->integer('investment');
-            $table->integer('saving_meter');
-            $table->integer('saving_gas');
-            $table->integer('payback');
-            $table->integer('suitability');
-            $table->integer('saving_kwh');
+            $table->integer('saving_euro')->nullable();
+            $table->integer('amount')->nullable();
+            $table->integer('gas')->nullable();
+            $table->integer('surface')->nullable();
+            $table->integer('usage')->nullable();
+            $table->integer('investment')->nullable();
+            $table->integer('saving_meter')->nullable();
+            $table->integer('saving_gas')->nullable();
+            $table->string('payback')->nullable();
+            $table->integer('suitability')->nullable();
+            $table->integer('saving_kwh')->nullable();
             $table->unsignedInteger('report_id');
             $table->foreign('report_id')->references('id')->on('reports')->onDelete('CASCADE');
 //            $table->integer('price');
