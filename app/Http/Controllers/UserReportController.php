@@ -23,6 +23,7 @@ class UserReportController extends Controller
     function store(Request $request)
     {
         // Create some report and put in DB
+        dd($request->all());
 
         return redirect()->route('user.report.show', ['report' => new Report]); // send the report to this route
     }

@@ -17,9 +17,11 @@ class UserInputController extends Controller
 
     public function update(Request $request)
     {
-        $input = Auth::user()->input? Auth::user()->input : Auth::user()->input()->create();
+        $input = Auth::user()->input ? Auth::user()->input : Auth::user()->input()->create();
         $input->fill($request->all());
         $input->save();
+
+        //FOREACH MET KEYS EN VERSCHILLENDE OUTPUTS
 
         return redirect()->back()->with(['status' => 'Your inputs has been saved']);
     }
