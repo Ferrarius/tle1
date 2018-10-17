@@ -19,7 +19,7 @@
                     <td>{{$report->created_at->format('d/m/Y')}}</td>
                     <td>
                         <a href="{{route('user.report.show', compact('report'))}}" class="btn btn-success float-left">Show</a>
-                        {{Form::open(['route' => ['user.report.delete', $report], 'class' => 'float-left'])}}
+                        {{Form::open(['route' => ['user.report.delete', $report],'method' => 'delete', 'class' => 'float-left'])}}
                             {{Form::submit('Delete', ['class'=> 'btn btn-danger'])}}
                         {{Form::close()}}
                     </td>
