@@ -13,6 +13,23 @@ body {
     margin-bottom: 50px;
 }
 
+.navbar{
+    background-color: #38c172;
+}
+
+.nav-link{
+    color:white!important;
+}
+
+.carousel-item{
+    background-color: #6ca38d !important;
+}
+
+.carousel-btn{
+    background-color: #38c172!important;
+    border-color: green!important;
+}
+
 /* CUSTOMIZE THE CAROUSEL
 -------------------------------------------------- */
 

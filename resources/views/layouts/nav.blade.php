@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+<nav class="navbar navbar-expand-md navbar-dark fixed-top">
     <a class="navbar-brand" href="{{ url('/') }}">
         {{ config('app.name', 'Laravel') }}
     </a>
@@ -9,10 +9,10 @@
         <!-- Left Side Of Navbar -->
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link" href="#">Mogelijkheden</a>
+                <a class="nav-link" href="{{route('possibilities')}}">Mogelijkheden</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Check</a>
+                <a class="nav-link" href="{{route('user.input.edit')}}">Check</a>
             </li>
         </ul>
         <!-- Right Side Of Navbar -->

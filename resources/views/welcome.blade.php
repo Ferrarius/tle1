@@ -11,32 +11,38 @@
         </ol>
         <div class="carousel-inner">
             <div class="carousel-item active">
+{{--
                 <img class="first-slide" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="First slide">
+--}}
                 <div class="container">
                     <div class="carousel-caption text-left">
-                        <h1>Example headline.</h1>
-                        <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-                        <p><a class="btn btn-lg btn-primary" href="#" role="button">Sign up today</a></p>
+                        <h1>Doe dè check!</h1>
+                        <p>Doe nu de check en krijg persoonlijk advies over hoe jij kunt bijdragen aan de energietransitie!</p>
+                        <p><a class="btn btn-lg btn-primary carousel-btn" href="{{route('user.input.edit')}}" role="button">CHECK</a></p>
                     </div>
                 </div>
             </div>
             <div class="carousel-item">
+{{--
                 <img class="second-slide" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Second slide">
+--}}
                 <div class="container">
                     <div class="carousel-caption">
-                        <h1>Another example headline.</h1>
-                        <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-                        <p><a class="btn btn-lg btn-primary" href="#" role="button">Learn more</a></p>
+                        <h1>Mogelijkheden</h1>
+                        <p>Check de mogelijkheden die jou kunnen helpen bij het bijdragen van de energietransitie.</p>
+                        <p><a class="btn btn-lg btn-primary carousel-btn" href="{{ route('possibilities') }}" role="button">Mogelijkheden</a></p>
                     </div>
                 </div>
             </div>
             <div class="carousel-item">
+{{--
                 <img class="third-slide" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Third slide">
+--}}
                 <div class="container">
                     <div class="carousel-caption text-right">
-                        <h1>One more for good measure.</h1>
-                        <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-                        <p><a class="btn btn-lg btn-primary" href="#" role="button">Browse gallery</a></p>
+                        <h1>Sla advies op</h1>
+                        <p>Registreer een account en sla je persoonlijke advies op!</p>
+                        <p><a class="btn btn-lg btn-primary carousel-btn" href="{{route('register')}}" role="button">Registreer</a></p>
                     </div>
                 </div>
             </div>

@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('content')
-    <div class="container">
+    <div class="container jumbotron">
         {{Form::model($input, ['route' => 'user.input.update'])}}
         <div class="form-group">
             {{Form::label('budget', 'Budget:')}}
