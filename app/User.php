@@ -33,8 +33,8 @@ class User extends Authenticatable
         return $this->hasOne(Input::class);
     }
 
-    function reports()
+    function houses()
     {
-        return $this->hasMany(Report::class);
+        return $this->hasMany(House::class);
     }
 }

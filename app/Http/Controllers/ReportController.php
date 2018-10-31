@@ -2,20 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\House;
 use App\Report;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
-class UserReportController extends Controller
+class ReportController extends Controller
 {
-    function index()
-    {
-        $reports = Auth::user()->reports;
-
-        return view('report.index', compact('reports'));
-    }
-
-    function show(Request $request, Report $report)
+    function show(Request $request, House $house, Report $report)
     {
         return view('report.show', compact('report'));
     }
@@ -28,10 +21,19 @@ class UserReportController extends Controller
         return redirect()->route('user.report.show', ['report' => new Report]); // send the report to this route
     }
 
-    function delete(Report $report)
+    function delete(House $house, Report $report)
     {
         $report->delete();
 
         return redirect()->route('user.reports');
+    }
+
+    function update(Request $request, House $house, Report $report)
+    {
+        $report = $report->with('outputs')->first();
+        $newReport = $report->replicate();
+        $newReport->save();
+        return redirect()->route('report.show', compact('house', 'newReport'));
+
     }
 }

@@ -1,26 +1,38 @@
 <?php
 
-use App\Report;
-use App\User;
-use Illuminate\Database\Seeder;
-use SebastianBergmann\CodeCoverage\Report\Xml\Project;
+namespace App\Http\Controllers;
 
-class ReportsTableSeeder extends Seeder
+use App\House;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
+class UserHouseController extends Controller
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
-    public function run()
+    public function index()
     {
-        $response = file_get_contents('https://api.backhoom.com/woningscan-consolidated/prod?referral_code=cf6c19320ec80bb2a25e7d4cd6b03067d7e74dd8&postcode=3065AH&nummer=220&bewoners=3&jaarverbruik_kWh=&jaarverbruik_m3=');
+        $houses = Auth::user()->houses()->with('reports')->orderBy('created_at', 'desc')->get();
+
+        return view('report.index', compact('houses'));
+    }
+
+    public function create()
+    {
+        return view('house.create');
+    }
+
+    public function store(Request $request)
+    {
+        $this->validate($request, [
+            'residents' => 'required|int',
+            'zip' => 'required',
+            'house_nr' => 'required',
+            'name' => 'required'
+        ]);
+        $response = file_get_contents('https://api.backhoom.com/woningscan-consolidated/prod?referral_code=cf6c19320ec80bb2a25e7d4cd6b03067d7e74dd8&postcode='.$request->get('zip').'&nummer='.$request->get('house_nr').$request->get('affix').'&bewoners='.$request->get('residents').'&jaarverbruik_kWh=&jaarverbruik_m3=');
         $json = json_decode($response, true);
 
-        $user = User::find(1);
-
-        $house = $user->houses()->create([
-            'name' => 'Home sweet home',
+        $house = Auth::user()->houses()->create([
+            'name' => $request->get('name'),
             'zip' => $json['lookup']['postcode'],
             'house_nr' => $json['lookup']['compleet_nummer'],
             'street' => $json['lookup']['straatnaam'],
@@ -50,6 +62,6 @@ class ReportsTableSeeder extends Seeder
                 ]);
             }
         }
-
+        return redirect()->route('reports');
     }
 }

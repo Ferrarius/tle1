@@ -8,9 +8,9 @@ class Report extends Model
 {
 
     protected $guarded = [];
-    function user()
+    function house()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(House::class);
     }
 
     function outputs()
