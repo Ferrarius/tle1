@@ -1,0 +1,34 @@
+.green {
+    background-color: #38c172 !important;
+}
+
+.btn-green {
+    background-color: #38c172 !important;
+    border-color: #3c9147 !important;
+}
+
+.nav-item a, .navbar-brand{
+    color: white !important;
+}
+
+.jumbotron{
+    background-color: white !important;
+}
+
+#inputZip{
+    width: 120px !important;
+}
+
+#inputHousenumber{
+    width: 80px !important;
+}
+
+#inputAddition{
+    width: 50px;
+}
+
+#inputAmount{
+    width: 100px;
+}
+
+
