@@ -11,24 +11,22 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Auth::routes();
 
-Route::get('/', 'HomeController@index')->name('home');
+Route::get('/', 'PageController@home')->name('home');
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/reports', 'UserHouseController@index')->name('reports');
     Route::get('/houses/{house}/reports/{report}', 'ReportController@show')->name('report.show');
+
+    Route::get('/houses/{house}/reports/{report}/finish-output/{output}', 'ReportController@finishOutput')->name('report.finish-output');
+
     Route::delete('/houses/{house}/reports/{report}', 'ReportController@delete')->name('report.delete');
     Route::post('houses/{house}/reports/{report}', 'ReportController@update')->name('report.update');
     Route::post('houses/{house}/reports', 'ReportController@store')->name('report.store');
 
     Route::post('/houses', 'UserHouseController@store')->name('user.house.store');
     Route::get('/houses/create', 'UserHouseController@create')->name('user.house.create');
-
 
     Route::post('/input', 'UserInputController@update')->name('user.input.update');
 });

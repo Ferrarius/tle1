@@ -6,6 +6,7 @@
         <table class="table table-striped">
             <thead class="thead-dark">
             <tr>
+                <th scope="col">Finish</th>
                 <th scope="col">Name</th>
                 <th scope="col">Savings in Euros</th>
                 <th scope="col">Amount</th>
@@ -18,6 +19,7 @@
             <tbody>
             @foreach($report->outputs as $output)
                 <tr>
+                    <td><a href="{{route('report.finish-output', ['house' => $house, 'report' => $report, 'output' => $output])}}"><i class="far fa-square"></i></a></td>
                     <td>{{$output->name}}</td>
                     <td>{{$output->saving_euro}}</td>
                     <td>{{$output->amount}}</td>
@@ -27,8 +29,6 @@
                     <td>{{$output->saving_kwh}}</td>
                 </tr>
             @endforeach
-
-
             </tbody>
         </table>
     </div>
