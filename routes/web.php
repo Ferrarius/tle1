@@ -18,6 +18,7 @@ Route::get('/', 'PageController@home')->name('home');
 Route::middleware(['auth'])->group(function () {
     Route::get('/reports', 'UserHouseController@index')->name('reports');
     Route::get('/houses/{house}/reports/{report}', 'ReportController@show')->name('report.show');
+    Route::put('/houses/{house}/reports/{report}', 'ReportController@update')->name('report.update');
 
     Route::get('/houses/{house}/reports/{report}/finish-output/{output}', 'ReportController@finishOutput')->name('report.finish-output');
 

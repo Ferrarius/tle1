@@ -12,9 +12,18 @@ class ReportController extends Controller
     function show(Request $request, House $house, Report $report)
     {
         $firstReport = $house->reports()->with('outputs')->first();
-        $lastReport = $report->load('outputs');
-        dd($firstReport->outputs->intersect($lastReport->outputs()));
-        dd($report);
+        $report->load('outputs');
+        $nameArray = $report->outputs->pluck('name')->toArray();
+        foreach($firstReport->outputs as $r) {
+            $r->completed = 0;
+            if(!in_array($r->name, $nameArray)) {
+                $r->completed = 1;
+                $report->outputs[] = $r;
+            }
+        }
+
+        $report->outputs = $report->outputs->sortBy('name');
+
         return view('report.show', compact('house','report'));
     }
 
@@ -35,7 +44,7 @@ class ReportController extends Controller
 
     function update(Request $request, House $house, Report $report)
     {
-        $report = $report->with('outputs')->first();
+        $report->load('outputs');
         $newReport = $report->replicate();
         $newReport->save();
         return redirect()->route('report.show', compact('house', 'newReport'));
@@ -43,7 +52,6 @@ class ReportController extends Controller
 
     function finishOutput(Request $request, House $house, Report $report, Output $output)
     {
-//        $report = $report->with('outputs')->first();
         $newReport = $report->replicate();
         $newOutputs = $report->outputs->except($output->id);
 

@@ -17,9 +17,16 @@
             </tr>
             </thead>
             <tbody>
+            {{Form::open(['route' => ['report.update', $house, $report]])}}
             @foreach($report->outputs as $output)
                 <tr>
-                    <td><a href="{{route('report.finish-output', ['house' => $house, 'report' => $report, 'output' => $output])}}"><i class="far fa-square"></i></a></td>
+                    <td>
+                        @if($output->completed)
+                            {{Form::checkbox('completed[]', null, ['checked' => 'checked'])}}
+                        @else
+                            {{Form::checkbox('completed[]')}}
+                        @endif
+                    </td>
                     <td>{{$output->name}}</td>
                     <td>{{$output->saving_euro}}</td>
                     <td>{{$output->amount}}</td>
@@ -29,6 +36,7 @@
                     <td>{{$output->saving_kwh}}</td>
                 </tr>
             @endforeach
+            {{Form::close()}}
             </tbody>
         </table>
     </div>
