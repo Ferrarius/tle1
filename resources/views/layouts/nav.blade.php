@@ -11,9 +11,6 @@
             <li class="nav-item">
                 <a class="nav-link" href="{{route('possibilities')}}">Mogelijkheden</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{{route('user.input.edit')}}">Check</a>
-            </li>
         </ul>
         <!-- Right Side Of Navbar -->
         <ul class="nav navbar-nav navbar-right">
