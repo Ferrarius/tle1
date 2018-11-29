@@ -1,5 +1,6 @@
 <?php
 
+use App\House;
 use App\Report;
 use App\User;
 use Illuminate\Database\Seeder;
@@ -28,6 +29,25 @@ class ReportsTableSeeder extends Seeder
             'coordinates' => str_replace(')', '', str_replace('POINT(', '',$json['lookup']['gis_center']))
         ]);
 
+
+        $report = $this->createReport($house);
+
+
+        $house2 = House::create([
+            'name' => 'niemands huis',
+            'zip' => $json['lookup']['postcode'],
+            'house_nr' => $json['lookup']['compleet_nummer'],
+            'street' => $json['lookup']['straatnaam'],
+            'city' => $json['lookup']['gemeentenaam'],
+            'coordinates' => str_replace(')', '', str_replace('POINT(', '',$json['lookup']['gis_center']))
+        ]);
+        $this->createReport($house2);
+    }
+
+    function createReport(House $house)
+    {
+        $response = file_get_contents('https://api.backhoom.com/woningscan-consolidated/prod?referral_code=cf6c19320ec80bb2a25e7d4cd6b03067d7e74dd8&postcode=3065AH&nummer=220&bewoners=3&jaarverbruik_kWh=&jaarverbruik_m3=');
+        $json = json_decode($response, true);
         $report = $house->reports()->create();
         if($json['woningscan'] & isset($json['woningscan']['result'])){
             foreach($json['woningscan']['result'] as $index => $output){
@@ -67,6 +87,6 @@ class ReportsTableSeeder extends Seeder
                 ]);
             }
         }
-
+        return $report;
     }
 }

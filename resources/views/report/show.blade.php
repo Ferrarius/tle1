@@ -3,6 +3,7 @@
 @section('content')
     <div class="container">
         <h1>{{$report->name}}</h1>
+
         <table class="table table-striped">
             <thead class="thead-dark">
             <tr>
@@ -21,11 +22,7 @@
             @foreach($report->outputs as $output)
                 <tr>
                     <td>
-                        @if($output->completed)
-                            {{Form::checkbox('completed[]', null, ['checked' => 'checked'])}}
-                        @else
-                            {{Form::checkbox('completed[]')}}
-                        @endif
+                        {{Form::checkbox('completed[]', null, $output->completed, !Auth::user()->can('update', $report)? ['disabled']:[])}}
                     </td>
                     <td>{{$output->name}}</td>
                     <td>{{$output->saving_euro}}</td>

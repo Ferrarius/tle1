@@ -21,7 +21,7 @@ class CreateHousesTable extends Migration
             $table->string('street')->nullable();
             $table->string('city')->nullable();
             $table->string('coordinates')->nullable();
-            $table->unsignedInteger('user_id');
+            $table->unsignedInteger('user_id')->nullable();
             $table->foreign('user_id')->references('id')->on('houses')->onDelete('CASCADE');
             $table->timestamps();
         });

@@ -27,8 +27,8 @@ class CreateOutputsTable extends Migration
             $table->string('payback')->nullable();
             $table->integer('suitability')->nullable();
             $table->integer('saving_kwh')->nullable();
-            $table->unsignedInteger('report_id');
-            $table->foreign('report_id')->references('id')->on('reports')->onDelete('CASCADE');
+            $table->uuid('report_uuid');
+            $table->foreign('report_uuid')->references('uuid')->on('reports')->onDelete('CASCADE');
 //            $table->integer('price');
 //            $table->text('description');
 //            $table->string('link');

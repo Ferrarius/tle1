@@ -14,7 +14,8 @@ class CreateReportsTable extends Migration
     public function up()
     {
         Schema::create('reports', function (Blueprint $table) {
-            $table->increments('id');
+            $table->uuid('uuid');
+            $table->primary('uuid');
             $table->unsignedInteger('house_id');
             $table->foreign('house_id')->references('id')->on('houses')->onDelete('CASCADE');
             $table->timestamps();
