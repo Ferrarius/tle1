@@ -49,6 +49,23 @@ class ReportsTableSeeder extends Seeder
                     'saving_kwh' => $output['besparing_kWh'],
                 ]);
             }
+        }else{
+            for($i = 0; $i < 6; $i++){
+                $report->outputs()->create([
+                    'name' => "test ".$i,
+                    'saving_euro' => $i,
+                    'amount' => $i +1 * 2,
+                    'gas' => 0,
+                    'surface' => 0,
+                    'usage' => 0,
+                    'investment' => $i +1,
+                    'saving_meter' => 0,
+                    'saving_gas' => 0,
+                    'payback' => 2000,
+                    'suitability' => 0,
+                    'saving_kwh' => 0,
+                ]);
+            }
         }
 
     }
