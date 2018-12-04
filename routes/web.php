@@ -13,12 +13,15 @@
 
 Auth::routes();
 
-Route::get('/', 'PageController@home')->name('home');
-Route::get('/testerooni', function(){
-    return App\Report::all();
+Route::get('/test', function(){
+    return "hoi";
 })->name('home');
 
+Route::get('/', 'PageController@home')->name('home');
+
 Route::get('/reports/{report}', 'ReportController@show')->name('report.show')->middleware('can:view,report');
+
+Route::post('/houses', 'HouseController@store')->name('house.store');
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/reports', 'UserHouseController@index')->name('reports');
@@ -31,7 +34,6 @@ Route::middleware(['auth'])->group(function () {
     Route::post('houses/{house}/reports/{report}', 'UserReportController@update')->name('report.update');
     Route::post('houses/{house}/reports', 'UserReportController@store')->name('report.store');
 
-    Route::post('/houses', 'UserHouseController@store')->name('user.house.store');
     Route::get('/houses/create', 'UserHouseController@create')->name('user.house.create');
 
     Route::post('/input', 'UserInputController@update')->name('user.input.update');
