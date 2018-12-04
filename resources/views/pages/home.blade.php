@@ -3,7 +3,7 @@
 @section('content')
 
     <div class="container">
-        {{Form::open(['route' => 'user.house.store'])}}
+        {{Form::open(['route' => 'house.store'])}}
         <div class="form-group">
             {{Form::label('budget', 'Budget:')}}
             {{Form::number('budget', null, ['class' => 'form-control'])}}

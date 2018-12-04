@@ -10,8 +10,12 @@ class UserInputController extends Controller
 {
     public function edit()
     {
-        $input = Auth::user()->input;
-
+        if(Auth::check()){
+            $input = Auth::user()->input;
+        }
+        else{
+            $input = "";
+        }
         return view('input.edit', compact('input'));
     }
 
