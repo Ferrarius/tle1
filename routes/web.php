@@ -42,3 +42,6 @@ Route::middleware(['auth'])->group(function () {
 });
 
 Route::get('/input', 'UserInputController@edit')->name('user.input.edit');
+
+Route::get('/products', 'productsController@show')->name('product.show');
+Route::post('/products', 'productsController@store')->name('product.store');
