@@ -4,6 +4,7 @@
     <div class="container">
         <h1>{{$report->name}}</h1>
 
+        {{Form::open(['route' => ['report.update', $house, $report]])}}
         <table class="table table-striped">
             <thead class="thead-dark">
             <tr>
@@ -18,11 +19,10 @@
             </tr>
             </thead>
             <tbody>
-            {{Form::open(['route' => ['report.update', $house, $report]])}}
             @foreach($report->outputs as $output)
                 <tr>
                     <td>
-                        {{Form::checkbox('completed[]', null, $output->completed, !Auth::user()->can('update', $report)? ['disabled']:[])}}
+                        {{Form::checkbox('completed[]', $output->id, $output->completed, !Auth::user()->can('update', $report)? ['disabled']:[])}}
                     </td>
                     <td>{{$output->name}}</td>
                     <td>{{$output->saving_euro}}</td>
@@ -33,8 +33,9 @@
                     <td>{{$output->saving_kwh}}</td>
                 </tr>
             @endforeach
-            {{Form::close()}}
             </tbody>
         </table>
+        {{Form::submit('Updaten', ['class' => 'btn btn-success'])}}
+        {{Form::close()}}
     </div>
 @endsection

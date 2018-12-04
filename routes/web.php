@@ -25,7 +25,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/houses/{house}/reports/{report}', 'UserReportController@show')->name('report.show');
     Route::put('/houses/{house}/reports/{report}', 'UserReportController@update')->name('report.update');
 
-    Route::get('/houses/{house}/reports/{report}/finish-output/{output}', 'UserReportController@finishOutput')->name('report.finish-output');
+//    Route::get('/houses/{house}/reports/{report}/finish-output/{output}', 'UserReportController@finishOutput')->name('report.finish-output');
 
     Route::delete('/houses/{house}/reports/{report}', 'UserReportController@delete')->name('report.delete');
     Route::post('houses/{house}/reports/{report}', 'UserReportController@update')->name('report.update');

@@ -28,6 +28,7 @@ class UserHouseController extends Controller
             'house_nr' => 'required',
             'name' => 'required'
         ]);
+
 //        $response = file_get_contents('https://api.backhoom.com/woningscan-consolidated/prod?referral_code=cf6c19320ec80bb2a25e7d4cd6b03067d7e74dd8&postcode='.$request->get('zip').'&nummer='.$request->get('house_nr').$request->get('affix').'&bewoners='.$request->get('residents').'&jaarverbruik_kWh=&jaarverbruik_m3=');
 //        $json = json_decode($response, true);
 

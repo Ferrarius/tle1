@@ -45,9 +45,16 @@ class UserReportController extends Controller
 
     function update(Request $request, House $house, Report $report)
     {
-        $report->load('outputs');
         $newReport = $report->replicate();
+        $newOutputs = $report->outputs->except($request->get('completed'));
         $newReport->save();
+
+        foreach($newOutputs as $output) {
+            $output->report_uuid = $newReport->uuid;
+            $newOutput = $output->replicate();
+            $newOutput->save();
+        }
+
         return redirect()->route('report.show', compact('house', 'newReport'));
     }
 
