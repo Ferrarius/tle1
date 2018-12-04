@@ -14,8 +14,8 @@
                     <input type="number" class="form-control" id="inputHousenumber" placeholder="Huisnummer" required>
                 </div>
                 <div class="form-group d-inline-block mr-3 text-left">
-                    <label for="inputAddition">Toevoeging</label>
-                    <input type="text" class="form-control" id="inputAddition" placeholder="Toevoeging">
+                    <label for="inputAffix">Toevoeging</label>
+                    <input type="text" class="form-control" id="inputAffix" placeholder="Toevoeging">
                 </div>
                 <div class="form-group d-inline-block mr-3 text-left">
                     <label for="inputAmount">Beschikbaar bedrag</label>
@@ -25,10 +25,8 @@
             </form>
         </div>
     </div>
+@endsection
 
-
-
-
-
-
+@section('scripts')
+    <script src="{{asset('js/multiplestep.js')}}"></script>
 @endsection
