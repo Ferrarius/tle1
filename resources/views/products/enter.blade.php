@@ -1,13 +1,12 @@
-@extends('layouts.app')
+@extends('layouts.main')
 
 @section('content')
     <h1>Enter products</h1>
 
-
     <div class="container">
         <div class="row">
             <div class="col">
-                <form action="{{route("product.store")}}" method="post">
+                <form action="{{route("product.create")}}" method="post">
                     {{csrf_field()}}
                     <div class="form-group">
                         <label>Product naam</label>
@@ -15,18 +14,13 @@
                     </div>
 
                     <div class="form-group">
-                        <label>Product naam</label>
-                        <input class="form-control" type="text" placeholder="Naam">
+                        <label>Prijs</label>
+                        <input class="form-control" type="text" placeholder="Prijs" name="price">
                     </div>
 
                     <div class="form-group">
-                        <label>Product naam</label>
-                        <input class="form-control" type="text" placeholder="Naam">
-                    </div>
-
-                    <div class="form-group">
-                        <label>Product naam</label>
-                        <input class="form-control" type="text" placeholder="Naam">
+                        <label>Link</label>
+                        <input class="form-control" type="text" placeholder="Link" name="link">
                     </div>
 
                     <div class="form-group">

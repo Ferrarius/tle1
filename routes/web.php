@@ -39,9 +39,18 @@ Route::middleware(['auth'])->group(function () {
 
     Route::post('/input', 'UserInputController@update')->name('user.input.update');
 
+    Route::get('/products', 'ProductsController@index')->name('product.index');     //list view products
+    Route::get('/product/{product}', 'ProductsController@detail')->name('product.detail');  //detail page products
+
+    Route::get('/products/create', 'ProductsController@index_create')->name('product.enter')->middleware('can:create,App\Product');
+    Route::post('/products/create', 'ProductsController@create')->name('product.create')->middleware('can:create,App\Product');
+
+
+    Route::put('/product/{product}', 'ProductsController@update')->name('product.update')->middleware('can:update,product');
+    Route::put('/product/{product}', 'ProductsController@delete')->name('product.delete')->middleware('can:delete,product');
+
+
 });
 
 Route::get('/input', 'UserInputController@edit')->name('user.input.edit');
 
-Route::get('/products', 'productsController@show')->name('product.show');
-Route::post('/products', 'productsController@store')->name('product.store');

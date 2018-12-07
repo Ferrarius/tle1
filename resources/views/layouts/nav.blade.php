@@ -11,6 +11,17 @@
             <li class="nav-item">
                 <a class="nav-link" href="{{route('possibilities')}}">Mogelijkheden</a>
             </li>
+            <li class="dropdown">
+                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Products</a>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="{{route('product.index')}}">All Products</a>
+                    <a class="dropdown-item" href="#">Meld Product aan</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="{{route('product.enter')}}">Voeg Product Toe</a>
+                </div>
+            </li>
+
+
         </ul>
         <!-- Right Side Of Navbar -->
         <ul class="nav navbar-nav navbar-right">
