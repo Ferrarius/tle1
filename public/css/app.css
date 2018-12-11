@@ -10490,26 +10490,6 @@ a.text-dark:focus {
   background-color: white !important;
 }
 
-#inputZip {
-  width: 120px !important;
-}
-
-#inputHousenumber {
-  width: 80px !important;
-}
-
-#inputAffix {
-  width: 50px;
-}
-
-#inputAmount {
-  width: 100px;
-}
-
-.test {
-  border: 4px solid red;
-}
-
 #hero-img {
   background-image: url("/images/hero-image.jpg");
   width: 100vw;
@@ -10518,9 +10498,8 @@ a.text-dark:focus {
   background-size: cover;
 }
 
-#form-home {
+#homeFormContainer {
   position: absolute;
-  top: calc(40%);
   -webkit-box-shadow: 0px 0px 39px -6px rgba(0, 0, 0, 0.75);
   box-shadow: 0px 0px 39px -6px rgba(0, 0, 0, 0.75);
 }
