@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Report;
 use App\House;
+use App\Output;
 use Illuminate\Http\Request;
 
 class ReportController extends Controller
@@ -30,7 +31,7 @@ class ReportController extends Controller
     public function store(Request $request)
     {
       if(isset($request->house['id'])){
-        $house = House::find($request->data->house->id);
+        $house = House::find($request->house['id']);
       }else{
         $house = House::create([
           'name' => 'Home sweet home',
@@ -42,9 +43,9 @@ class ReportController extends Controller
           ]);
       }
       $report = $house->reports()->create();
-      foreach($request->outputs as $index => $output){
 
-        $report->create([
+      foreach($request->outputs as $index => $output){
+        $newOuput = [
           'name' => $index,
           'saving_euro' => $output['besparing_el_euro'],
           'amount' => $output['aantal'],
@@ -56,8 +57,11 @@ class ReportController extends Controller
           'saving_gas' => $output['besparing_gas_euro'],
           'payback' => $output['terugverdientijd'],
           'suitability' => $output['geschiktheid'],
-          'saving_kwh' => $output['besparing_kWh'],
-        ]);
+          'saving_kwh' => $output['besparing_kWh']
+        ];
+        $report->outputs()->create($newOuput);
       }
+      $report->url = route('report.show', $report);
+      return $report;
     }
 }

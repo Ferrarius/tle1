@@ -22,7 +22,9 @@
             @foreach($report->outputs as $output)
                 <tr>
                     <td>
+                      @auth
                         {{Form::checkbox('completed[]', null, $output->completed, !Auth::user()->can('update', $report)? ['disabled']:[])}}
+                      @endauth
                     </td>
                     <td>{{$output->name}}</td>
                     <td>{{$output->saving_euro}}</td>

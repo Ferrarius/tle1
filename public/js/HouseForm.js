@@ -40,8 +40,12 @@ class HouseForm extends React.Component {
           headers: {
               'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
           },
-          success: function(e){console.log(e)},
-          error: function(e){console.log(e)}
+          success: function(e){
+            window.location.href = e['url'];
+          },
+          error: function(e){
+
+          }
       });
     }
 
