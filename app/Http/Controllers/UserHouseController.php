@@ -12,7 +12,27 @@ class UserHouseController extends Controller
     {
         $houses = Auth::user()->houses()->with('reports')->orderBy('created_at', 'desc')->get();
 
-        return view('report.index', compact('houses'));
+        return view('house.index', compact('houses'));
+    }
+
+    public function show(House $house)
+    {
+        $report = $house->report();
+
+        $firstReport = $house->reports()->with('outputs')->first();
+        $report->load('outputs');
+        $nameArray = $report->outputs->pluck('name')->toArray();
+        foreach($firstReport->outputs as $r) {
+            $r->completed = 0;
+            if(!in_array($r->name, $nameArray)) {
+                $r->completed = 1;
+                $report->outputs[] = $r;
+            }
+        }
+
+        $report->outputs = $report->outputs->sortBy('name');
+
+        return view('house.show', compact('house', 'report'));
     }
 
     public function create()

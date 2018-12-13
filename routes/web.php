@@ -25,11 +25,13 @@ Route::post('/houses', 'HouseController@store')->name('house.store');
 Route::get('/possibilities', 'HomeController@possibilities')->name('possibilities');
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('/reports', 'UserHouseController@index')->name('reports');
+
+    Route::get('/houses', 'UserHouseController@index')->name('house.index');
+    Route::get('/houses/{house}', 'UserHouseController@show')->name('house.show');
+
+    Route::get('/houses/{house}/reports', 'UserHouseController@index')->name('report.index');
     Route::get('/houses/{house}/reports/{report}', 'UserReportController@show')->name('report.show');
     Route::put('/houses/{house}/reports/{report}', 'UserReportController@update')->name('report.update');
-
-//    Route::get('/houses/{house}/reports/{report}/finish-output/{output}', 'UserReportController@finishOutput')->name('report.finish-output');
 
     Route::delete('/houses/{house}/reports/{report}', 'UserReportController@delete')->name('report.delete');
     Route::post('houses/{house}/reports/{report}', 'UserReportController@update')->name('report.update');
