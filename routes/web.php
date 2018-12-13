@@ -24,6 +24,8 @@ Route::get('/reports/{report}', 'ReportController@show')->name('report.show')->m
 Route::post('/houses', 'HouseController@store')->name('house.store');
 Route::get('/possibilities', 'HomeController@possibilities')->name('possibilities');
 
+Route::post('/reports', 'ReportController@store')->name('report.store');
+
 Route::middleware(['auth'])->group(function () {
     Route::get('/reports', 'UserHouseController@index')->name('reports');
     Route::get('/houses/{house}/reports/{report}', 'UserReportController@show')->name('report.show');
@@ -33,7 +35,6 @@ Route::middleware(['auth'])->group(function () {
 
     Route::delete('/houses/{house}/reports/{report}', 'UserReportController@delete')->name('report.delete');
     Route::post('houses/{house}/reports/{report}', 'UserReportController@update')->name('report.update');
-    Route::post('houses/{house}/reports', 'UserReportController@store')->name('report.store');
 
     Route::get('/houses/create', 'UserHouseController@create')->name('user.house.create');
 

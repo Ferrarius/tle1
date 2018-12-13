@@ -29,6 +29,22 @@ class HouseForm extends React.Component {
         this.goNextStep();
     }
 
+    submit(){
+      $.ajax({
+          url: baseUrl+'/reports',
+          method: 'POST',
+          data: {
+            outputs: this.state.outputs,
+            house: this.state.house,
+          },
+          headers: {
+              'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+          },
+          success: function(e){console.log(e)},
+          error: function(e){console.log(e)}
+      });
+    }
+
     goNextStep(e){
         if(this.state.currentStep > -1){
             e.preventDefault();
@@ -37,6 +53,9 @@ class HouseForm extends React.Component {
             let outputs = Object.assign({}, this.state.outputs); //copy
             outputs[item].bezit = e.currentTarget.value; //edit
             this.setState({outputs}); //save
+        }
+        if(this.state.currentStep == this.state.totalSteps){
+          this.submit();
         }
         this.setState({currentStep: this.state.currentStep+1});
     }
@@ -81,14 +100,6 @@ class HouseForm extends React.Component {
                         <button type="submit" value="nee" className="btn btn-primary btn-danger ml-lg-4 col-lg-2 col-md-4 col-sm-6" onClick={(e) => this.goNextStep(e)}>Nee</button>
                     </div>
                 </div>
-                }
-                {this.state.currentStep > this.state.totalSteps &&
-                    <div style={{marginTop: 2700 + "px"}}>
-                        <pre>
-                            <h2>Outputs:</h2><hr></hr>
-                            {JSON.stringify(this.state.outputs, null, 2)}
-                        </pre>
-                    </div>
                 }
             </div>
         );
