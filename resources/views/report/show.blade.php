@@ -37,9 +37,9 @@
             @endforeach
             </tbody>
         </table>
-        @auth
+        @can('update', $report)
         {{Form::submit('Updaten', ['class' => 'btn btn-success'])}}
         {{Form::close()}}
-        @endauth
+        @endcan
     </div>
 @endsection
