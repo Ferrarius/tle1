@@ -14,6 +14,11 @@ class House extends Model
         return $this->hasMany(Report::class);
     }
 
+    function report()
+    {
+        return $this->reports()->orderBy('created_at', 'desc')->first();
+    }
+
     function user()
     {
         return $this->belongsTo(User::class);

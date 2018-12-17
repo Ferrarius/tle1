@@ -9,9 +9,15 @@ use Illuminate\Http\Request;
 
 class UserReportController extends Controller
 {
+    function index()
+    {
+        $houses = Auth::user()->houses()->with('reports')->orderBy('created_at', 'desc')->get();
+
+        return view('report.index', compact('houses'));
+    }
+
     function show(Request $request, House $house, Report $report)
     {
-
         $firstReport = $house->reports()->with('outputs')->first();
         $report->load('outputs');
         $nameArray = $report->outputs->pluck('name')->toArray();
@@ -45,24 +51,16 @@ class UserReportController extends Controller
 
     function update(Request $request, House $house, Report $report)
     {
-        $report->load('outputs');
         $newReport = $report->replicate();
+        $newOutputs = $report->outputs->except($request->get('completed'));
         $newReport->save();
-        return redirect()->route('report.show', compact('house', 'newReport'));
-    }
 
-    function finishOutput(Request $request, House $house, Report $report, Output $output)
-    {
-        $newReport = $report->replicate();
-        $newOutputs = $report->outputs->except($output->id);
-
-        $newReport->save();
         foreach($newOutputs as $output) {
-            $output->report_id = $newReport->id;
+            $output->report_uuid = $newReport->uuid;
             $newOutput = $output->replicate();
             $newOutput->save();
         }
 
-        return redirect()->route('report.show', compact('house', 'newReport'));
+        return redirect()->route('house.show', compact('house', 'newReport'));
     }
 }

@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container">
-        <h1>{{$report->name}}</h1>
+        <h1>{{$house->name}}</h1>
 
         {{Form::open(['route' => ['report.update', $house, $report]])}}
         <table class="table table-striped">
@@ -22,9 +22,7 @@
             @foreach($report->outputs as $output)
                 <tr>
                     <td>
-                      @auth
-                        {{Form::checkbox('completed[]', null, $output->completed, !Auth::user()->can('update', $report)? ['disabled']:[])}}
-                      @endauth
+                        {{Form::checkbox('completed[]', $output->id, $output->completed, !Auth::user()->can('update', $report)? ['disabled']:[])}}
                     </td>
                     <td>{{$output->name}}</td>
                     <td>{{$output->saving_euro}}</td>
@@ -37,9 +35,7 @@
             @endforeach
             </tbody>
         </table>
-        @auth
         {{Form::submit('Updaten', ['class' => 'btn btn-success'])}}
         {{Form::close()}}
-        @endauth
     </div>
 @endsection
