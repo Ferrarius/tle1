@@ -26,6 +26,7 @@ class HouseForm extends React.Component {
         this.setState({outputs: e.woningscan.result});
         this.setState({house: e.lookup});
         this.setState({totalSteps: Object.keys(this.state.outputs).length -1});
+
         this.goNextStep();
     }
 
@@ -38,11 +39,12 @@ class HouseForm extends React.Component {
             outputs[item].bezit = e.currentTarget.value; //edit
             this.setState({outputs}); //save
         }
+        document.getElementsByClassName("step")[this.state.currentStep].className += " finish";
         this.setState({currentStep: this.state.currentStep+1});
     }
 
     showError(e){
-        console.log("Error")
+        console.log("Error: " + e)
     }
 
     render() {
@@ -73,6 +75,11 @@ class HouseForm extends React.Component {
                 {this.state.currentStep > -1 && this.state.currentStep <= this.state.totalSteps &&
                 <div className="text-center flex-column">
                     <div className="">
+                        {Object.keys(this.state.outputs).map((item, i) => {
+                            return(
+                                <span className={"step " + (this.state.currentStep==i?'active': '')}></span>
+                            )
+                        })}
                         <h3 >Heeft u (een) {Object.keys(this.state.outputs)[this.state.currentStep]}?</h3>
                     </div>
                     <br></br>
