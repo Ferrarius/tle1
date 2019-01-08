@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Product;
 use App\Report;
 use App\House;
 use App\Output;
@@ -24,6 +25,15 @@ class ReportController extends Controller
         }
 
         $report->outputs = $report->outputs->sortBy('name');
+
+        foreach ($report->outputs as $output) {
+          $output->products = Product::where('products.name', 'LIKE', '%'.$output->name.'%')
+              ->join('users', 'products.user_id', '=', 'users.id')
+              ->groupBy('users.name')
+              ->select('products.*', 'users.name as company_name')
+              ->limit(5)
+              ->get();
+        }
 
         return view('report.show', compact('house','report'));
     }

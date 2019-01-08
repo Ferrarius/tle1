@@ -19,6 +19,7 @@ class CreateProductsTable extends Migration
             $table->string('name');
             $table->float('price');
             $table->string('link');
+            $table->unsignedInteger('user_id');
         });
     }
 

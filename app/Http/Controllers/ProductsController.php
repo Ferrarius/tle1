@@ -25,7 +25,8 @@ class ProductsController extends Controller
         Product::create([
             'name' => $request->name,
             'price' => $request->price,
-            'link' => $request->link
+            'link' => $request->link,
+            'user_id' => Auth::id()
         ]);
 
         return view('products.enter');
