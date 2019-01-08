@@ -57,7 +57,3 @@ Route::middleware(['auth'])->group(function () {
 });
 
 Route::get('/input', 'UserInputController@edit')->name('user.input.edit');
-<<<<<<< HEAD
-=======
-
->>>>>>> products_list
