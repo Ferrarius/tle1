@@ -95,11 +95,20 @@ footer{
 }
 
 .output{
-  padding: 16px;
-
+  & > div:not(.output-image){
+    padding: 16px;
+  }
+  &-image{
+    width: 100px;
+    height: 100px;
+    background-position: center;
+    background-size: cover;
+    margin: -2px;
+  }
   h3{
     margin: 0;
   }
+  overflow: hidden;
 }
 
 .card{

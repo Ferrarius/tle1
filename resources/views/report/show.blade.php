@@ -10,35 +10,39 @@
             <h2 class="text-light">Producten</h2>
             <div class="outputs">
                 @foreach($report->outputs as $output)
-                    <div class="output card">
-                        <div class="d-flex justify-content-between btn" data-toggle="collapse" data-target="#collapse{{$output->name}}">
-                            <h3>{{ucfirst($output->name)}}</h3>
-                            <div>
-                                @auth
-                                {{Form::checkbox('completed[]', $output->name, $output->completed, ['class' => 'checkbox'])}}
-                                @endauth
-                            </div>
+                    <div class="output card d-flex flex-row">
+                        <div class="output-image" style="background-image: url({{asset('images/outputs/'.$output->name.'.jpg')}})">
+
                         </div>
-                        <div class="collapse" id="collapse{{$output->name}}">
-                            <strong class="col-12">Bedrijven die het product aanbieden</strong>
-                            <div class="products">
-                                @foreach($output->products as $product)
-                                    <div class="product">
-                                        <div class="btn d-flex justify-content-between" data-toggle="collapse" data-target="#collapse{{$output->name.$loop->index}}">
-                                            <h4>{{$product->company_name}}</h4>
-                                            <span>Meer info</span>
-                                        </div>
-                                        <div class="collapse products" id="collapse{{$output->name.$loop->index}}">
-                                            <div class="d-flex justify-content-between">
-                                                <strong>{{$product->name}}</strong>
-                                                <span>Prijs: {{$product->price}}</span>
-                                                <a href="{{$product->link}}" target="_blank" class="btn btn-success">Buy!</a>
+                        <div class="flex-1 d-flex flex-column justify-content-center">
+                            <div class="btn flex-1 d-flex justify-content-between align-items-center" data-toggle="collapse" data-target="#collapse{{$output->name}}">
+                                <h3>{{ucfirst($output->name)}}</h3>
+                                <div>
+                                    @auth
+                                    {{Form::checkbox('completed[]', $output->name, $output->completed, ['class' => 'checkbox'])}}
+                                    @endauth
+                                </div>
+                            </div>
+                            <div class="collapse" id="collapse{{$output->name}}">
+                                <strong class="col-12">Bedrijven die het product aanbieden</strong>
+                                <div class="products">
+                                    @foreach($output->products as $product)
+                                        <div class="product">
+                                            <div class="btn d-flex justify-content-between" data-toggle="collapse" data-target="#collapse{{$output->name.$loop->index}}">
+                                                <h4>{{$product->company_name}}</h4>
+                                                <span>Meer info</span>
+                                            </div>
+                                            <div class="collapse products" id="collapse{{$output->name.$loop->index}}">
+                                                <div class="d-flex justify-content-between">
+                                                    <strong>{{$product->name}}</strong>
+                                                    <span>Prijs: {{$product->price}}</span>
+                                                    <a href="{{$product->link}}" target="_blank" class="btn btn-success">Buy!</a>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                @endforeach
+                                    @endforeach
+                                </div>
                             </div>
-
                         </div>
                     </div>
                 @endforeach

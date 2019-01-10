@@ -10576,7 +10576,19 @@ footer {
 }
 
 .output {
+  overflow: hidden;
+}
+
+.output > div:not(.output-image) {
   padding: 16px;
+}
+
+.output-image {
+  width: 100px;
+  height: 100px;
+  background-position: center;
+  background-size: cover;
+  margin: -2px;
 }
 
 .output h3 {
