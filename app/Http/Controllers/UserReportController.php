@@ -18,6 +18,7 @@ class UserReportController extends Controller
 
     function show(Request $request, House $house, Report $report)
     {
+        dd('nee');
         $firstReport = $house->reports()->with('outputs')->first();
         $report->load('outputs');
         $nameArray = $report->outputs->pluck('name')->toArray();
@@ -51,16 +52,22 @@ class UserReportController extends Controller
 
     function update(Request $request, House $house, Report $report)
     {
-        $newReport = $report->replicate();
-        $newOutputs = $report->outputs->except($request->get('completed'));
-        $newReport->save();
-
-        foreach($newOutputs as $output) {
-            $output->report_uuid = $newReport->uuid;
-            $newOutput = $output->replicate();
-            $newOutput->save();
+//        $newReport = $report->replicate();
+//        $newOutputs = $report->outputs->except($request->get('completed'));
+//        dd($request->get('completed'));
+//        $newReport->save();
+//
+//        foreach($newOutputs as $output) {
+//            $output->report_uuid = $newReport->uuid;
+//            $newOutput = $output->replicate();
+//            $newOutput->save();
+//        }
+        foreach($report->outputs as $output){
+            if(in_array($output->name, $request->get('completed'))){
+                $output->delete();
+            }
         }
 
-        return redirect()->route('house.show', compact('house', 'newReport'));
+        return redirect()->route('report.show', compact('report'));
     }
 }

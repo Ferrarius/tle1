@@ -10490,6 +10490,10 @@ a.text-dark:focus {
   }
 }
 
+body {
+  min-height: 100vh;
+}
+
 .navbar-laravel {
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
@@ -10497,7 +10501,7 @@ a.text-dark:focus {
 
 footer {
   padding: 20px 0;
-  margin-top: 30px;
+  margin-top: 20px;
 }
 
 .green {
@@ -10520,8 +10524,6 @@ footer {
 
 #hero-img {
   background-image: url("/images/hero-image.jpg");
-  width: 100vw;
-  height: calc(100vh - 55px);
   background-position: center;
   background-size: cover;
 }
@@ -10565,6 +10567,10 @@ footer {
   margin: 0;
 }
 
+.outputs {
+  margin-bottom: 10px;
+}
+
 .outputs > *:not(:first-child) {
   margin-top: 8px;
 }
@@ -10596,5 +10602,9 @@ footer {
 .static-background.blurred {
   -webkit-filter: blur(4px);
           filter: blur(4px);
+}
+
+.flex-1 {
+  flex: 1;
 }
 

@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="static-background blurred" style="background-image: url({{asset('images/report-background.jpg')}});"></div>
-    <div class="container">
+    <div class="container flex-1">
         <h1>{{$report->name}}</h1>
 
         {{Form::open(['route' => ['report.update', $house, $report]])}}
@@ -15,7 +15,7 @@
                             <h3>{{ucfirst($output->name)}}</h3>
                             <div>
                                 @auth
-                                {{Form::checkbox('completed[]', null, $output->completed, !Auth::user()->can('update', $report)? ['disabled']:[])}}
+                                {{Form::checkbox('completed[]', $output->name, $output->completed, ['class' => 'checkbox'])}}
                                 @endauth
                             </div>
                         </div>
@@ -65,8 +65,21 @@
         @endif
 
         @can('update', $report)
-        {{Form::submit('Updaten', ['class' => 'btn btn-success'])}}
+        <div class="text-right">
+            {{Form::submit('Updaten', ['class' => 'btn btn-success'])}}
+        </div>
+
         {{Form::close()}}
         @endcan
     </div>
+@endsection
+
+@section('scripts')
+    <script>
+        window.addEventListener('load', function(){
+            $('.checkbox').on('click', function(e){
+                e.stopPropagation();
+            });
+        })
+    </script>
 @endsection

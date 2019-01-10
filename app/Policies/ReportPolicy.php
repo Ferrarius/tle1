@@ -10,16 +10,10 @@ class ReportPolicy
 {
     use HandlesAuthorization;
 
-    /**
-     * Create a new policy instance.
-     *
-     * @return void
-     */
     public function __construct()
     {
-        //
-    }
 
+    }
 
     public function view(?User $user, Report $report)
     {

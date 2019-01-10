@@ -107,8 +107,8 @@ class HouseForm extends React.Component {
                     </div>
                     <br></br>
                     <div className="">
-                        <button type="submit" value="ja" className="btn btn-primary btn-green mr-lg-4  col-lg-2 col-md-4 col-sm-6" onClick={(e) => this.goNextStep(e)}>Ja</button>
-                        <button type="submit" value="nee" className="btn btn-primary btn-danger ml-lg-4 col-lg-2 col-md-4 col-sm-6" onClick={(e) => this.goNextStep(e)}>Nee</button>
+                        <button type="submit" value="1" className="btn btn-primary btn-green mr-lg-4  col-lg-2 col-md-4 col-sm-6" onClick={(e) => this.goNextStep(e)}>Ja</button>
+                        <button type="submit" value="0" className="btn btn-primary btn-danger ml-lg-4 col-lg-2 col-md-4 col-sm-6" onClick={(e) => this.goNextStep(e)}>Nee</button>
                     </div>
                 </div>
                 }

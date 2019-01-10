@@ -7,6 +7,7 @@ use App\Report;
 use App\House;
 use App\Output;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ReportController extends Controller
 {
@@ -51,25 +52,31 @@ class ReportController extends Controller
           'city' => $request['house']['gemeentenaam'],
           'coordinates' => str_replace(')', '', str_replace('POINT(', '', $request['house']['gis_center']))
           ]);
+
+          if(Auth::check()){
+              $house->user_id = Auth::id();
+              $house->save();
+          }
       }
       $report = $house->reports()->create();
-
       foreach($request->outputs as $index => $output){
-        $newOuput = [
-          'name' => $index,
-          'saving_euro' => $output['besparing_el_euro'],
-          'amount' => $output['aantal'],
-          'gas' => $output['verbruik_gas_euro'],
-          'surface' => $output['beschikbaar_oppervlakte'],
-          'usage' => $output['verbruik_el_euro'],
-          'investment' => $output['investering'],
-          'saving_meter' => $output['besparing_m3'],
-          'saving_gas' => $output['besparing_gas_euro'],
-          'payback' => $output['terugverdientijd'],
-          'suitability' => $output['geschiktheid'],
-          'saving_kwh' => $output['besparing_kWh']
-        ];
-        $report->outputs()->create($newOuput);
+          if(!$output['bezit']){
+              $newOuput = [
+                  'name' => $index,
+                  'saving_euro' => $output['besparing_el_euro'],
+                  'amount' => $output['aantal'],
+                  'gas' => $output['verbruik_gas_euro'],
+                  'surface' => $output['beschikbaar_oppervlakte'],
+                  'usage' => $output['verbruik_el_euro'],
+                  'investment' => $output['investering'],
+                  'saving_meter' => $output['besparing_m3'],
+                  'saving_gas' => $output['besparing_gas_euro'],
+                  'payback' => $output['terugverdientijd'],
+                  'suitability' => $output['geschiktheid'],
+                  'saving_kwh' => $output['besparing_kWh']
+              ];
+              $report->outputs()->create($newOuput);
+          }
       }
       $report->url = route('report.show', $report);
       return $report;

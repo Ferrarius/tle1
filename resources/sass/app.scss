@@ -10,6 +10,9 @@
 
 //@import "~font-awesome/scss/font-awesome.scss";
 
+body{
+  min-height: 100vh;
+}
 
 .navbar-laravel {
   background-color: #fff;
@@ -18,8 +21,9 @@
 
 footer{
   padding: 20px 0;
-  margin-top: 30px;
+  margin-top: 20px;
 }
+
 .green {
   background-color: #38c172 !important;
 }
@@ -39,8 +43,6 @@ footer{
 
 #hero-img{
   background-image: url("/images/hero-image.jpg");
-  width: 100vw;
-  height: calc(100vh - 55px);
   background-position: center;
   background-size: cover;
 }
@@ -89,6 +91,7 @@ footer{
   & > *:not(:first-child){
     margin-top: 8px;
   }
+  margin-bottom: 10px;
 }
 
 .output{
@@ -118,4 +121,8 @@ footer{
   &.blurred{
     filter: blur(4px);
   }
+}
+
+.flex-1{
+  flex: 1;
 }
